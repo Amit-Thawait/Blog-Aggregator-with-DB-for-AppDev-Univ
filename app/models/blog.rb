@@ -17,7 +17,8 @@ class Blog < ActiveRecord::Base
           @post.blog_id = blog.id
           blog.blog_title = @doc.css('h1.title').text
           blog.save!
-          @post.url = title_url[0]['href']
+          @post.url = "#"
+          @post.url = title_url[0]['href'] if !title_url.blank?       
           @post.title = node.css('h3.post-title').text          
           @post.content = node.css('div.post-body').inner_html.chomp
           @post.author = node.css('span.fn').text          
