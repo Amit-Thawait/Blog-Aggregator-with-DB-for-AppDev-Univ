@@ -24,3 +24,9 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>
+
+<script>
+function copy_user_name(){
+   $('#admin_user_name').val($('#admin_email').val());		
+}
+</script>
