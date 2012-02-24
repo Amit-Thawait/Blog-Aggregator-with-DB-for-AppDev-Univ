@@ -2,12 +2,12 @@
 	<h2>Blogs</h2>
 <input type='hidden' id='current_page' />  
 <input type='hidden' id='show_per_page' />  
-<ul style="margin:10px;" id='content'>
+<ul style="float:left;width:715px;">
 <% if @blogs && !@blogs.empty? %>
 <% @posts.each do |post| %>  
 <% blog = Blog.find(post.blog_id)%>
 <li>
-  <span style="font-size:14px;"><%= blog.blog_title %></span>
+  <strong><span style="font-size:16px;"><%= blog.blog_title %></span></strong>
 	<br/>	
   	<%= post.post_date.strftime('%A ,%d %B %Y')  %>
   	<br/>
@@ -24,8 +24,7 @@
 </ul>
 <br/>
  <%#= will_paginate @blogs %>
-  <!-- An empty div which will be populated using jQuery -->  
- <div id='page_navigation'></div>
+
 <!--
 </div> 
 <div style="float:left;width:200px;">
@@ -37,8 +36,8 @@
 <% end %>
 </ul>
 </div> 
--->
 <style>
+
   body {
     background: none repeat scroll 0 0 #FFFFFF;
     color: #333333;
@@ -293,6 +292,7 @@ pre {
     height: 20px;
     width: 20px;
 }
+
 .navigation {
     border-bottom: 1px solid;
     font-size: 1em;
