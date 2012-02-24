@@ -1,13 +1,12 @@
 require 'spec_helper'
 require 'open-uri'
-# require 'Blog'
+require 'Post'
 describe Blog do 
  
   it "should fetch all the blog objects" do
     blog1 = Factory(:blog,:blogger_name=>'Mansi Shah',:blog_url => 'http://mansishahlearnings.blogspot.com/')
     blog2 = Factory(:blog,:blogger_name=>'Lakshmi ks',:blog_url => 'http://abc.blogspot.com/')
     blog3 = Factory(:blog,:blogger_name=>'Amit Thawait',:blog_url => 'http://xyz.blogspot.com/')  
-    
     Blog.get_all_blog_objects.length == 3
   end
   
@@ -21,6 +20,14 @@ describe Blog do
     doc.css('div.post')[0].css('span.fn').text.strip.should eql('Amit Thawait')
     doc.css('h1.title').text.strip.should eql('My First Blog')
     doc.css('div.post')[0].css('abbr.published')[0]['title'].gsub('T'," ").should eql('2012-01-04 06:40:00-08:00')   
+  end
+  
+  
+  it "should read and save posts of given blog" do
+     blog = Factory(:blog,:blogger_name=>'Lakshmi ks',:blog_url => 'http://lakshmi-ks.blogspot.in/')
+     blog.read_blog_posts(blog)
+     post_authors = Post.all.collect(&:author).uniq
+     post_authors.should include("lakshmi-ks")      
   end
  
 end
