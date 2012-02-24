@@ -15,3 +15,9 @@
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
+
+<script>
+function copy_user_name(){
+   $('#admin_user_name').val($('#admin_email').val());		
+}
+</script>

@@ -29,6 +29,37 @@ class Blog < ActiveRecord::Base
       end
   end
   
+  #  Generic Method to read all blogs post
+  def read_blog_posts(blog)
+    doc = Nokogiri::HTML(open("#{blog.blog_url}"))      
+    xml_url = doc.css('head link[@rel="alternate"]')[0]['href']
+    xml_doc_url= xml_url.include?("http:") ? xml_url : "http:" + xml_url
+    @xml_doc = Nokogiri::XML(open("#{xml_doc_url}"))      
+    if !@xml_doc.nil?
+        @xml_doc.css('entry').each do |node|
+          blog_title = @xml_doc.css('title')[0].text        
+          blog.blog_title = blog_title
+          @post = Post.new
+          title = node.css('title').text 
+          @post.title = title
+          @post.blog_id = blog.id          
+          blog.save!
+          @post.url = "#"
+          if !title.blank?         
+            post_url = node.css('link[@rel="alternate"]')
+            @post.url = !post_url.blank? ? post_url[0]['href'] : node.css('link')[0]['href']
+          end    
+          @post.content = node.css('content').text
+          @post.author = blog.blog_title
+          post_author = node.css('author name').text         
+          @post.author = post_author if post_author != ""                                 
+          published_date = node.css('updated').text 
+          @post.post_date = Time.parse(published_date.gsub('T'," "))          
+          @post.save!
+        end         
+      end    
+  end
+  
   #This method is used to read posts from pat's blogs
   #We know that separate method for each blog is not a good idea. It's quite difficult to write a generic method since everyone is following different styles for their blogs.
   #Anyway we are trying to figure it out...
