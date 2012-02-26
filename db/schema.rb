@@ -32,11 +32,10 @@ ActiveRecord::Schema.define(:version => 20120131082436) do
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
   create_table "blogs", :force => true do |t|
-    t.string   "blogger_name"
+    t.string   "blog_author"
     t.string   "blog_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "blogger_type"
     t.string   "blog_title"
   end
 

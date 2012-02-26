@@ -1,6 +1,6 @@
 class Blog < ActiveRecord::Base
   require 'open-uri'
-  validates_presence_of :blogger_name
+  #validates_presence_of :blogger_name
   validates_presence_of :blog_url
   validates_format_of :blog_url, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
   validates_uniqueness_of :blog_url
@@ -32,27 +32,29 @@ class Blog < ActiveRecord::Base
   #  Generic Method to read all blogs post
   def read_blog_posts(blog)
     doc = Nokogiri::HTML(open("#{blog.blog_url}"))      
-    xml_url = doc.css('head link[@rel="alternate"]')[0]['href']
+    xml_url = doc.css('head link[rel="alternate"]').first['href']
     xml_doc_url= xml_url.include?("http:") ? xml_url : "http:" + xml_url
     @xml_doc = Nokogiri::XML(open("#{xml_doc_url}"))      
     if !@xml_doc.nil?
         @xml_doc.css('entry').each do |node|
-          blog_title = @xml_doc.css('title')[0].text        
+          blog_title = @xml_doc.css('title').first.text        
           blog.blog_title = blog_title
+          blog_author = @xml_doc.css('author name').first.text
+          blog.blog_author =  blog_author.blank? ? blog_title : blog_author
+          blog.save!
           @post = Post.new
           title = node.css('title').text 
           @post.title = title
           @post.blog_id = blog.id          
-          blog.save!
           @post.url = "#"
           if !title.blank?         
-            post_url = node.css('link[@rel="alternate"]')
+            post_url = node.css('link[rel="alternate"]')
             @post.url = !post_url.blank? ? post_url[0]['href'] : node.css('link')[0]['href']
           end    
           @post.content = node.css('content').text
           @post.author = blog.blog_title
           post_author = node.css('author name').text         
-          @post.author = post_author if post_author != ""                                 
+          @post.author = !post_author.blank? ? post_author : blog_author                                 
           published_date = node.css('updated').text 
           @post.post_date = Time.parse(published_date.gsub('T'," "))          
           @post.save!

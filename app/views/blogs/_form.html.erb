@@ -11,14 +11,16 @@
     </div>
   <% end %>
 
+<!--   <div class="field">
+    <%#= f.label :blogger_name %><br />
+    <%#= f.text_field :blogger_name %>
+  </div> -->
   <div class="field">
-    <%= f.label :blogger_name %><br />
-    <%= f.text_field :blogger_name %>
-  </div>
-  <div class="field">
-    <%= f.label :blog_url %>(Please Mention  http:// or https:// )<br />
+    <%= f.label :blog_url %> : 
     <%= f.text_field :blog_url %>
+    <br/>(Please Mention  http:// or https:// )
   </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>
