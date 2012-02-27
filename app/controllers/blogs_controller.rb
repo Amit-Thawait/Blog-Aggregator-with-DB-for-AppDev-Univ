@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_admin!,:except => ['read_blogs','admin/login']
+  before_filter :authenticate_admin!,:except => ['read_blogs']
   
   layout :set_layout
   

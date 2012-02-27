@@ -1,7 +1,11 @@
 <!--<div style="float:left;width:600px;">-->
 	<h2>Blogs</h2>
 <input type='hidden' id='current_page' />  
-<input type='hidden' id='show_per_page' />  
+<input type='hidden' id='show_per_page' /> 
+<div style="float:right">
+	<%= paginate @posts %> 
+</div>	
+
 <ul style="float:left;width:900px;">
 <% if @blogs && !@blogs.empty? %>
 <% @posts.each do |post| %>  
