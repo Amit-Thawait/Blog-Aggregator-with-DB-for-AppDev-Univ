@@ -45,7 +45,7 @@
 				      <% if @blogs && !@blogs.nil? %>
 					<% @blogs.each do |blog|%>
 					<li>
-						<a href="<%= blog.blog_url%>" target="_blank"><%= blog.blogger_name%></a>
+						<a href="<%= blog.blog_url%>" target="_blank"><%= blog.blog_author%></a>
 					</li>
 				        <%end%>
                                       <% end %>
@@ -104,7 +104,7 @@
 							<div class="art-footer-text">
 								<!--     <p><a href="#">Link1</a> | <a href="#">Link2</a> | <a href="#">Link3</a></p> -->
 								<p>
-									Copyright © 2011. All Rights Reserved.
+									Copyright © 2011 Blog aggregator 2.0 . All Rights Reserved.
 								</p>
 							</div>
 							<div class="cleared"></div>

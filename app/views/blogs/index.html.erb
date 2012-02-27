@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Blogger name</th>
+    <th>Blog Author</th>
     <th>Blog url</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @blogs.each do |blog| %>
   <tr>
-    <td><%= blog.blogger_name %></td>
+    <td><%= blog.blog_author %></td>
     <td><%= blog.blog_url %></td>
     <td><%= link_to 'Show', blog_path(blog)%></td>
     <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
