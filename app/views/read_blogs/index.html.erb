@@ -5,9 +5,8 @@
 <ul style="float:left;width:900px;">
 <% if @blogs && !@blogs.empty? %>
 <% @posts.each do |post| %>  
-<% blog = Blog.find(post.blog_id)%>
 <li>
-  <strong><span style="font-size:16px;"><%= blog.blog_title %></span></strong>
+  <strong><span style="font-size:16px;"><%= post.blog.blog_title %></span></strong>
 	<br/>	
   	<%= post.post_date.strftime('%A ,%d %B %Y')  %>
   	<br/>
