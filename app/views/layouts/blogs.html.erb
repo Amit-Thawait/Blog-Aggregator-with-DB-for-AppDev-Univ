@@ -22,25 +22,42 @@
 				<div class="art-header-wrapper">
 					<div class="art-header-inner">
 						<div class="art-logo">
-							<h1 class="art-logo-name"> <%= link_to 'Blog Aggregator',read_blogs_path%> </h1>
+							<h1 class="art-logo-name"> <%= link_to 'AppDev Rubyists Blogs',read_blogs_path%> </h1>
 							<h2 class="art-logo-text"></h2>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="cleared reset-box"></div>
-			<div class="art-nav">
+			<div style="float: left; width: 900px;padding-top:15px;margin-left:185px;height: 55px" class="art-sheet">
+				<div class="art-sheet-tl"></div>
+				<div class="art-sheet-tr"></div>
+				<div class="art-sheet-bl"></div>
+				<div class="art-sheet-br"></div>
+				<div class="art-sheet-tc"></div>
+				<div class="art-sheet-bc"></div>
+				<div class="art-sheet-cl"></div>
+				<div class="art-sheet-cr"></div>
+				<div class="art-sheet-cc" style="top:5px"></div>
+				<div class="art-sheet-body" style="padding-top: 3px;">
+				    <div class="art-post-inner art-article">
+<%= render :partial=>"/layouts/navigation_links" %>
+					</div>
+					<div class="cleared"></div>
+				</div>
+			</div> 
+	<!--		<div class="art-nav" style="margin:20px 0px 0px 40px">
 				<div class="art-nav-outer">
 					<div class="art-nav-wrapper">
 						<div class="art-nav-inner">
-							<%= render :partial=>"/layouts/navigation_links" %>
+							<%#= render :partial=>"/layouts/navigation_links" %>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="cleared reset-box"></div>
-
-			<div class="art-sheet" style="margin:25px 180px -5px;width:820px">
+			
+			<div class="art-sheet" style="margin:25px 185px -5px;width:900px">
 				<div class="art-sheet-tl"></div>
 				<div class="art-sheet-tr"></div>
 				<div class="art-sheet-bl"></div>
@@ -69,6 +86,8 @@
 										<!--	<h2 class="art-postheader"><img src="/images/postheadericon.png" width="32" height="32" alt="" /></h2>-->
 											<div class="cleared"></div>
 											<div class="art-postcontent">
+												<p class="notice"><%= notice %></p>
+											       	<p class="alert"><%= alert %></p>												
 												<%= yield %>
 											</div>
 											<div class="cleared"></div>
@@ -91,7 +110,7 @@
 							<div class="art-footer-text">
 								<!--     <p><a href="#">Link1</a> | <a href="#">Link2</a> | <a href="#">Link3</a></p> -->
 								<p>
-									Copyright © 2011. All Rights Reserved.
+									Copyright © 2011 Blog aggregator 1.0 . All Rights Reserved.
 								</p>
 							</div>
 							<div class="cleared"></div>
@@ -105,3 +124,4 @@
 		</div>
 	</body>
 </html>
+

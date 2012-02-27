@@ -2,7 +2,7 @@
 	<h2>Blogs</h2>
 <input type='hidden' id='current_page' />  
 <input type='hidden' id='show_per_page' />  
-<ul style="float:left;width:715px;">
+<ul style="float:left;width:900px;">
 <% if @blogs && !@blogs.empty? %>
 <% @posts.each do |post| %>  
 <% blog = Blog.find(post.blog_id)%>
@@ -53,7 +53,7 @@ h1 {
     margin-bottom: 5px;
 }
 h2 {
-    color: #880000;
+    color: #E19209;
     font-size: 18px;
     font-weight: normal;
     margin-bottom: 5px;
@@ -138,7 +138,6 @@ pre {
     border: 1px solid #BCBE9F;
     font-family: Courier New,monospace;
     font-size: 12px;
-    margin: 9px 18px;
     overflow: hidden;
     padding: 0 9px;
 }
