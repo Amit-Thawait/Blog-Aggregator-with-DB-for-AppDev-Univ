@@ -1,4 +1,5 @@
 Amit::Application.routes.draw do
+   root :to => "blogs#read_blogs"
   devise_for :admins, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
   
   devise_scope :admin do 
@@ -6,12 +7,16 @@ Amit::Application.routes.draw do
     get "logout", :to => "devise/sessions#destroy"
   end 
 
+
+  resources :blogs 
+
+  
+  match "/read_blogs" => "blogs#read_blogs"
+  
+ #resources :read_blogs
+ 
+  
   root :to => 'blogs#index', :constraints => lambda {|r| r.env["warden"].authenticate? }
-
-  resources :blogs
-
-  resources :read_blogs
-  root :to => "read_blogs#index"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,8 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_admin!,:except => ['read_blogs','admin/login']
+  
+  layout :set_layout
+  
   # GET /blogs
   # GET /blogs.json
   def index
@@ -90,4 +93,15 @@ class BlogsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def read_blogs
+    @blogs = Blog.all
+    @posts = Post.order("post_date DESC").page(params[:page])
+  end
+  
+  private
+  def set_layout
+     params[:action] == "read_blogs" ? 'application' : 'blogs'
+  end
+  
 end
