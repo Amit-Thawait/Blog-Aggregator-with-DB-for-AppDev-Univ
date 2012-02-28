@@ -87,18 +87,18 @@ margin: 20px 0;
 {
    color: #E19209;
 margin: 22px 0;
-   font-size: 28px;    
+   font-size: 15px;    
 }
 
 .art-blockcontent h2
 {
 margin: 22px 0;
-   font-size: 28px; 
+   font-size: 15px; 
 }
 
 .art-postcontent h2 a, .art-postcontent h2 a:link, .art-postcontent h2 a:hover, .art-postcontent h2 a:visited, .art-blockcontent h2 a, .art-blockcontent h2 a:link, .art-blockcontent h2 a:hover, .art-blockcontent h2 a:visited 
 {
-   font-size: 28px; 
+   font-size: 15px; 
 }
 
 .art-postcontent h3
@@ -203,16 +203,7 @@ html
   clear: left;
 }
 
-body
-{
-  padding: 0; 
-  margin:0;
-  color: #292929;
-  height:100%;
-  min-height:100%;
-  background-color: #EEEEEE;
-  min-width: 900px;
-}
+
 
 .cleared
 {
