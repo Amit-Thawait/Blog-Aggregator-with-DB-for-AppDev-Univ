@@ -16,7 +16,7 @@
   	<br/>
   	<strong><a href="<%= post.url %>" target="_blank"><%= post.title %></a></strong>
   	  	<pre>
-  	  		<%= post.content.gsub(/\n+/,"\n").html_safe %>
+  	  		<%= post.content.gsub(/\<br\>/,"\n").gsub(/\n+/,"\n").gsub(/\<p\>\n/,"<p>").html_safe %>
   	    </pre>
   	    <p>
   		  Posted by  <%= post.author %>
