@@ -52,9 +52,9 @@ class Blog < ActiveRecord::Base
             @post.url = !post_url.blank? ? post_url[0]['href'] : node.css('link')[0]['href']
           end    
           @post.content = node.css('content').text
-          @post.author = blog.blog_title
+          @post.author = blog_title
           post_author = node.css('author name').text         
-          @post.author = !post_author.blank? ? post_author : blog_author                                 
+          @post.author = !post_author.blank? ? post_author : blog_title                                 
           published_date = node.css('updated').text 
           @post.post_date = Time.parse(published_date.gsub('T'," "))          
           @post.save!
