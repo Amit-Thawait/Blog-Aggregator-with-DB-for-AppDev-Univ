@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.day, :at => '5:20 pm' do
+every 1.day, :at => '2:00 pm' do
   runner "Post.update_post_table"
 end
