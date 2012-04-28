@@ -88,7 +88,7 @@ class Blog < ActiveRecord::Base
     xml_doc.css('entry').each do |node|
       blog_title = xml_doc.css('title').first.text        
       blog.blog_title = blog_title
-      blog_author = xml_doc.css('author name').first.nil?  ? '' : xml_doc.css('author name').first.text #@xml_doc.css('author name').first.text
+      blog_author = xml_doc.css('author name').first.nil?  ? '' : xml_doc.css('author name').first.text
       blog.blog_author =  blog_author.blank? ? blog_title : blog_author
       blog.save!
       post = Post.new
@@ -97,10 +97,11 @@ class Blog < ActiveRecord::Base
       post.blog_id = blog.id          
       post.url = "#"
       if !title.blank?         
-        post_url = node.css('link[rel="alternate"]') #node.css('link').text
+        post_url = node.css('link[rel="alternate"]')
         post.url = !post_url.blank? ? post_url[0]['href'] : node.css('link')[0]['href']
       end    
-      post.content = node.css('content').text#node.content
+
+      post.content = node.css('content').text
       post.author = blog_title
       post_author = node.css('author name').text         
       post.author = !post_author.blank? ? post_author : blog_title                                 
@@ -126,7 +127,11 @@ class Blog < ActiveRecord::Base
        if !title.blank?
           post.url = node.css('link').text
        end
-       post.content = node.content
+       node.elements.each do |e|
+         if e.name == "encoded"
+           post.content = e.text
+         end
+       end       
        post.author = blog_title
        post_author = node.css('author name').text
        post.author = !post_author.blank? ? post_author : blog_title 
