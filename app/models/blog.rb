@@ -116,9 +116,7 @@ class Blog < ActiveRecord::Base
     xml_doc.css('item').each do |node|
        blog_title = xml_doc.css('title').first.text
        blog.blog_title = blog_title
-       blog_author = xml_doc.css('author name').first.nil?  ? '' : xml_doc.css('author name').first.text
-       blog.blog_author =  blog_author.blank? ? blog_title : blog_author
-       blog.save!
+       blog_author = xml_doc.css('author name').first.nil?  ? '' : xml_doc.css('author name').first.text            
        post = Post.new
        title = node.css('title').text 
        post.title = title
@@ -127,14 +125,20 @@ class Blog < ActiveRecord::Base
        if !title.blank?
           post.url = node.css('link').text
        end
+       content = ''
        node.elements.each do |e|
          if e.name == "encoded"
-           post.content = e.text
+           content = e.text
          end
-       end       
+         if e.name == "creator"
+           blog_author = e.text
+         end         
+       end  
+       blog.blog_author =  blog_author != '' ? (blog_author == 'admin' ? blog_title : blog_author) : blog_title
+       blog.save!  
+       post.content = content.blank? ? node.css('description').text : content
        post.author = blog_title
-       post_author = node.css('author name').text
-       post.author = !post_author.blank? ? post_author : blog_title 
+       post.author = blog.blog_author
        published_date = node.css('pubDate').text
        post.post_date = published_date.to_date
        post.save!

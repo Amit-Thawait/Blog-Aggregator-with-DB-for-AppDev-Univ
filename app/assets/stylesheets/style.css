@@ -1194,7 +1194,7 @@ a img
 .art-article img, img.art-article, .art-block img, .art-footer img
 {
   border: solid 1px #7A7A7A;
-  margin: 10px;
+/*  margin: 10px; */
 }
 
 .art-metadata-icons img
