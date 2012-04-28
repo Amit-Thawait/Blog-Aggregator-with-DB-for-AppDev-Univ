@@ -47,15 +47,6 @@ class BlogsController < ApplicationController
     @blog = Blog.new(params[:blog])  
     respond_to do |format|
       if @blog.save     
-        # urls1 = [ "http://patshaughnessy.net/","http://patshaughnessy.net"]
-        # urls2= ["http://www.alexrothenberg.com/", "http://www.alexrothenberg.com"]
-       # if urls1.include?(@blog.blog_url)      
-        # @blog.read_posts_one(@blog) 
-       # elsif urls2.include?(@blog.blog_url)      
-         # @blog.read_posts_two(@blog)         
-       # else       
-         # @blog.read_posts(@blog)        
-        # end
         @blog.read_blog_posts(@blog)
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
         format.json { render :json => @blog, :status => :created, :location => @blog }
