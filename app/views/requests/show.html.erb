@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Requestor name:</b>
+  <%= @request.requestor_name %>
+</p>
+
+<p>
+  <b>Blog url:</b>
+  <%= @request.blog_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_request_path(@request) %>
+<% if admin_signed_in? %>
+|
+<%= link_to 'Back', requests_path %>
+<% end %>

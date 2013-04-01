@@ -46,7 +46,9 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(params[:blog])  
     respond_to do |format|
-      if @blog.save     
+      if @blog.save
+        request = Request.find_by_blog_url(@blog.blog_url)
+        request.destroy if request
         @blog.read_blog_posts(@blog)
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
         format.json { render :json => @blog, :status => :created, :location => @blog }
