@@ -2,5 +2,8 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @request %> |
+<%= link_to 'Show', @request %>
+<% if admin_signed_in? %>
+|
 <%= link_to 'Back', requests_path %>
+<% end %>

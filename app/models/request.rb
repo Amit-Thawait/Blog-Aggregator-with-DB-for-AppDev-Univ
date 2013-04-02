@@ -6,7 +6,7 @@ class Request < ActiveRecord::Base
 
   def check_for_uniqueness
     blog_url = Blog.find_by_blog_url(blog_url)
-    !blog_url.blank? ? true : false
+    blog_url.blank? ? true : false
   end
 
 end
