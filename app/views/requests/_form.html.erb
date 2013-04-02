@@ -20,8 +20,16 @@
     <%= f.label :blog_url %><br />
     <%= f.text_field :blog_url %>
   </div>
+  (Please Mention  http:// or https:// )
   <br/><br/>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<style type="text/css">
+ .field_with_errors label{
+    color: red;
+  }
+</style>
